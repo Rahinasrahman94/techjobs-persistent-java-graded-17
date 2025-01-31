@@ -61,19 +61,15 @@ public class HomeController {
                 model.addAttribute("employerId", employer);
                 newJob.setEmployer(employer);
                 model.addAttribute("jobs", jobRepository.findAll());
+                List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+                newJob.setSkills(skillObjs);
                 jobRepository.save(newJob);
-                return "index";
+                model.addAttribute("skills", skillObjs);
             }
-
-            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-            newJob.setSkills(skillObjs);
-            jobRepository.save(newJob);
-            model.addAttribute("skills", skillObjs);
-            return "index";
-
         }
-    }
+        return "index";
 
+    }
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
         Optional optJob = jobRepository.findById(jobId);

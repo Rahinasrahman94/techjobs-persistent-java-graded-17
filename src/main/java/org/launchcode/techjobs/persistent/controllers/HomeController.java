@@ -58,6 +58,7 @@ public class HomeController {
                 model.addAttribute("title", "Invalid EmployerId: " + employerId);
             } else {
                 Employer employer = optemp.get();
+
                 model.addAttribute("employerId", employer);
                 newJob.setEmployer(employer);
                 model.addAttribute("jobs", jobRepository.findAll());

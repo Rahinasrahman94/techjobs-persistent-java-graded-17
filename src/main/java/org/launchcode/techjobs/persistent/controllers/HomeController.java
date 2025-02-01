@@ -55,17 +55,17 @@ public class HomeController {
         } else {
             Optional<Employer> optemp = employerRepository.findById(employerId);
             if (optemp.isEmpty()) {
-                model.addAttribute("title", "Invalid EmployerId: " + employerId);
+                model.addAttribute("title", "Invalid EmployerId");
             } else {
                 Employer employer = optemp.get();
 
                 model.addAttribute("employerId", employer);
                 newJob.setEmployer(employer);
                 model.addAttribute("jobs", jobRepository.findAll());
-                List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-                newJob.setSkills(skillObjs);
+                List<Skill> skillObj = (List<Skill>) skillRepository.findAllById(skills);
+                newJob.setSkills(skillObj);
                 jobRepository.save(newJob);
-                model.addAttribute("skills", skillObjs);
+                model.addAttribute("skills", skillObj);
             }
         }
         return "index";
@@ -81,7 +81,6 @@ public class HomeController {
         } else {
             return "redirect:../";
         }
-
 
     }
 }

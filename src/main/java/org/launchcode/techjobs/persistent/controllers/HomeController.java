@@ -58,16 +58,16 @@ public class HomeController {
                 model.addAttribute("title", "Invalid EmployerId");
             } else {
                 Employer employer = optemp.get();
-
                 model.addAttribute("employerId", employer);
                 newJob.setEmployer(employer);
                 model.addAttribute("jobs", jobRepository.findAll());
+                return "index";
+            }
                 List<Skill> skillObj = (List<Skill>) skillRepository.findAllById(skills);
                 newJob.setSkills(skillObj);
                 jobRepository.save(newJob);
                 model.addAttribute("skills", skillObj);
             }
-        }
         return "index";
 
     }

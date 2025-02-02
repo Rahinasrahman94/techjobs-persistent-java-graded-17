@@ -182,7 +182,6 @@ public class TestTaskThree extends AbstractTest {
     @Test
     public void testSqlQuery() throws IOException {
         String queryFileContents = getFileContents("queries.sql");
-
         Pattern queryPattern = Pattern.compile("DROP\\s+TABLE\\s+job;", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
         Matcher queryMatcher = queryPattern.matcher(queryFileContents);
         boolean queryFound = queryMatcher.find();

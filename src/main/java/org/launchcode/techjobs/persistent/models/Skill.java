@@ -41,9 +41,6 @@ public class Skill extends AbstractEntity {
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
     }
-//    public void addJob(Job jobs)
-//    {
-//   this.jobs.add(jobs);
-//   }
+
 }
 

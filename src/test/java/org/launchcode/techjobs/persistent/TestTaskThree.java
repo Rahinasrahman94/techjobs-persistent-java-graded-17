@@ -185,6 +185,7 @@ public class TestTaskThree extends AbstractTest {
         Pattern queryPattern = Pattern.compile("DROP\\s+TABLE\\s+job;", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
         Matcher queryMatcher = queryPattern.matcher(queryFileContents);
         boolean queryFound = queryMatcher.find();
+
         assertTrue(queryFound, "Task 3 SQL query is incorrect. Test your query against your database to find the error.");
     }
 

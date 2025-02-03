@@ -3,6 +3,8 @@ package org.launchcode.techjobs.persistent;
 import jakarta.persistence.ManyToMany;
 import mockit.Expectations;
 import mockit.Mocked;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.launchcode.techjobs.persistent.controllers.HomeController;
 import org.launchcode.techjobs.persistent.controllers.ListController;
@@ -31,6 +33,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by LaunchCode
  */
 public class TestTaskFour extends AbstractTest {
+
+    private static final Logger log = LogManager.getLogger(TestTaskFour.class);
 
     /*
     * Verifies that Skill.jobs exists
@@ -218,7 +222,6 @@ public class TestTaskFour extends AbstractTest {
     @Test
     public void testSqlQuery () throws IOException {
         String queryFileContents = getFileContents("queries.sql");
-
         Pattern queryPattern = Pattern.compile("SELECT\\s+\\*\\s+FROM\\s+skill" +
                 "\\s*(LEFT|INNER)?\\s+JOIN\\s+job_skills\\s+ON\\s+(skill.id\\s+=\\s+job_skills.skills_id|job_skills.skills_id\\s+=\\s+skill.id)" +
                 "(\\s*WHERE\\s+job_skills.jobs_id\\s+IS\\s+NOT\\s+NULL)?" +

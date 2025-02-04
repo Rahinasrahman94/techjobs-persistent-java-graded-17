@@ -14,38 +14,35 @@ import java.util.Optional;
 //@Controller
 @Controller
 @RequestMapping("employers")
-public class EmployerController  {
+public class EmployerController {
 
     @Autowired
     private EmployerRepository employerRepository;
 
     @GetMapping("/")
-    public String index(Model model)
-    {
-        model.addAttribute("employers",employerRepository.findAll());
+    public String index(Model model) {
+        model.addAttribute("employers", employerRepository.findAll());
         return "employers/index";
     }
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
-       // model.addAttribute("employers",employerRepository.findAll());
-        model.addAttribute(new Employer());
+        model.addAttribute(new Employer());// adding new employer obj
         return "employers/add";
     }
 
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
-                                    Errors errors, Model model) {
+                                         Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-          model.addAttribute("title","Add Employer");
-           // model.addAttribute("employers",employerRepository.findAll());
-            return "employers/add" ;
+            model.addAttribute("title", "Add Employer");
+            return "employers/add";// if error it goes to the title page
 
-        }
-     else {
-         employerRepository.save(newEmployer);
-         model.addAttribute("employers",employerRepository.findAll());
-            return "employers/index" ;
+        } else {
+            employerRepository.save(newEmployer);// adding employee to the repo
+            model.addAttribute("employers", employerRepository.findAll());
+            return "employers/index";// after adding return to index page
             //  return "redirect:";
         }
 
@@ -58,7 +55,7 @@ public class EmployerController  {
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
-          //  model.addAttribute("employer", employerRepository.findAll());
+            //  model.addAttribute("employer", employerRepository.findAll());
             return "employers/view";
         } else {
             return "redirect:../";

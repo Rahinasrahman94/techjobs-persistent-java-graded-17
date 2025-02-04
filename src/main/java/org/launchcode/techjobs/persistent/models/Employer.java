@@ -26,7 +26,7 @@ public class Employer extends AbstractEntity {
 
     // Initialize the id and value fields.
     public Employer(String location) {
-        super();// derived id and name from abstrct class
+        super();
         this.location = location;
     }
     public String getLocation() {

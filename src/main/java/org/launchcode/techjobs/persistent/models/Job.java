@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Job extends AbstractEntity{
 
-    @ManyToOne// creating relationship b/w job and employer
+    @ManyToOne
     private  Employer employer;
 
     @ManyToMany

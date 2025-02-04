@@ -44,7 +44,7 @@ public class SkillController {
     }
     @GetMapping("view/{employerId}")
     public String displayViewSkill (Model model, @PathVariable int employerId) {
-        Optional optSkill = skillRepository.findById(employerId);// searching skill asso with emp obj
+        Optional optSkill = skillRepository.findById(employerId);
         if (optSkill.isPresent()) {
             Skill skill = (Skill) optSkill.get();
             skillRepository.save(skill);

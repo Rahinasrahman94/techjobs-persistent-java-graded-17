@@ -41,19 +41,19 @@ public class ListController {
 
     @RequestMapping("")
     public String list(Model model) {
-     model.addAttribute("employers",employerRepository.findAll());// passing all available emplyers to the view
-     model.addAttribute("skills",skillRepository.findAll());//passing all available skill to the view
+     model.addAttribute("employers",employerRepository.findAll());
+     model.addAttribute("skills",skillRepository.findAll());
         return "list";
     }
 
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Job> jobs;
-        if (column.toLowerCase().equals("all")){// if the search value is all ,all the job available in the repo will display
+        if (column.toLowerCase().equals("all")){
             jobs = jobRepository.findAll();
             model.addAttribute("title", "All Jobs");
         } else {
-            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());// search based on value and coloumn
+            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
         model.addAttribute("jobs", jobs);

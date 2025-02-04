@@ -36,7 +36,7 @@ public class SearchController {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm, jobRepository.findAll());
         }
         model.addAttribute("columns", columnChoices);
-        model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);//searching by radio,text box
+        model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
         model.addAttribute("jobs", jobs);
 
         return "search";
